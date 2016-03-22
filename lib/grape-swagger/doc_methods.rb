@@ -113,7 +113,7 @@ module GrapeSwagger
           end
         else
           param_type = case
-                       when path.include?(":#{param}")
+                       when path =~ /:#{Regexp.quote(param)}(?:\/|$|\(|\.)/
                          'path'
                        when %w(POST PUT PATCH).include?(method)
                          if is_primitive?(data_type)
